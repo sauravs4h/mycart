@@ -1,13 +1,18 @@
 const express=require("express");
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+
+
 const {Usermodel}=require("../model/user.model");
 const users=express.Router();
 
 users.use(express.json());
 
+
 users.get("/",(req,res)=>{
     res.send({msg:"this is user route"})
 })
+
 
 users.post("/signup",async(req,res)=>{
 
@@ -37,9 +42,31 @@ users.post("/signup",async(req,res)=>{
 })
 
 
-users.post("/login",(req,res)=>{
+users.post("/login",async(req,res)=>{
 
     const payload=req.body;
+    const email=payload.email;
+    const password=payload.password;
+
+    const user_available= await Usermodel.findOne({email});
+    const hashpassword=user_available?.password;
+
+    if(user_available){
+
+        bcrypt.compare(password, hashpassword, function(err, result) {
+            if(result){
+                var token = jwt.sign({ foo: 'bar' }, 'hush');
+
+                res.send({msg:"Login Successfull ", token:token,status:"error"});
+
+            }else{
+                res.send({msg:"Wrong craditionals",status:"error"})
+            }
+        });
+
+    }else{
+        res.send({msg:"Please Signup First",status:"error"});
+    }
     
 })
 
