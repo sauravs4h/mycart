@@ -4,13 +4,14 @@ const app=express();
 
 
 const {connection}=require("./config/db");
-const {users}=require("./routes/user.routes")
+const {users}=require("./routes/user.routes");
+const {prodr}=require("./routes/product.routes")
 
 
 app.use(cors())
 app.use(express.json());
 app.use("/user",users)
-
+app.use("/product",prodr);
 
 
 
