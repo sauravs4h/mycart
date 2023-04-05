@@ -1,1 +1,27 @@
+#navbar{
+    display: flex;
+    justify-content: space-around;
+}
+#navbar>h1{
+    color: red;
+}
 
+
+#container{
+   
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+}
+
+#container>div{
+    width: 400px;
+    text-align: justify;
+}
+#container>div>img{
+
+    width: 200px;
+    height: 250px;
+    
+}

@@ -1,8 +1,14 @@
 
+let allproduct=document.getElementById("allproduct")
+allproduct.onclick=()=>{
+    getproduct();
+}
 
 const api="http://localhost:8080/product"
 
 //http://localhost:8080/product/allproduct
+
+///////////////// get allproduct ///////////////////////
 
 const getproduct=async()=>{
 
@@ -26,10 +32,10 @@ const getproduct=async()=>{
     }
 }
 
-getproduct()
 
 
-product_div=document.getElementById("allproduct");
+
+product_div=document.getElementById("container");
 
 
 const appendproduct=(res)=>{
@@ -46,7 +52,7 @@ const appendproduct=(res)=>{
         name.innerText=el.name
 
         let price=document.createElement("h3")
-        price.innerText=el.price
+        price.innerText="RS "+el.price
 
         let brand=document.createElement("h3")
         brand.innerText=el.brand
@@ -67,4 +73,19 @@ const appendproduct=(res)=>{
 
         product_div.append(div)
     })
+}
+
+
+///////////////////////////// add product  /////////////////////////////////
+
+
+const addproductform=()=>{
+    product_div.innerHTML="";
+
+    product_div.innerHTML=`
+    
+    
+    
+    
+    `
 }
