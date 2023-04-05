@@ -24,6 +24,13 @@ const productSchema=mongoose.Schema({
     category:{
         type:String,
         require:true
+    },
+    stock:{
+        type:Number,
+        require:true
+    },
+    rating:{
+        type:Number
     }
 
 })
