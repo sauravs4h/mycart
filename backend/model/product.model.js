@@ -5,6 +5,7 @@ const productSchema=mongoose.Schema({
         type:String,
         require:true
     },
+
     price:{
         type:Number,
         require:true
@@ -17,6 +18,7 @@ const productSchema=mongoose.Schema({
         type:String,
         require:true
     },
+    
     brand:{
         type:String,
         require:true

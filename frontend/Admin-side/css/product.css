@@ -12,16 +12,35 @@
     margin-top: 100px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
+    row-gap: 50px;
     
 }
 
-#container>div{
-    width: 400px;
-    text-align: justify;
-}
-#container>div>img{
+
+.productdiv>img{
 
     width: 200px;
     height: 250px;
     
+}
+
+.productdiv{
+    width: 400px;
+    text-align: justify;
+}
+
+
+
+#addpform{
+    
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 600px;
+    gap: 15px;
+    align-items: center;
+}
+
+#addpform>input{
+    height: 30px;
 }
