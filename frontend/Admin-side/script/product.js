@@ -1,4 +1,5 @@
 
+
 let allproduct=document.getElementById("allproduct")
 allproduct.onclick=()=>{
     getproduct();
@@ -35,15 +36,16 @@ const getproduct=async()=>{
 
 
 
-product_div=document.getElementById("container");
+container=document.getElementById("container");
 
 
 const appendproduct=(res)=>{
 
-    product_div.innerHTML="";
+    container.innerHTML="";
     res.forEach((el)=>{
 
         let div=document.createElement("div")
+        div.classList.add("productdiv")
         
         let img=document.createElement("img")
         img.src=el.image
@@ -68,24 +70,139 @@ const appendproduct=(res)=>{
 
         let deletee = document.createElement("button")
         deletee.innerText="DELETE"
+        deletee.onclick=()=>{
+            deleteproduct(el._id)
+        }
 
         div.append(img,name,price,brand,category,desc,update,deletee)
 
-        product_div.append(div)
+        container.append(div)
     })
 }
 
 
+
+// delete product
+
+async function deleteproduct(id){
+
+   
+
+    let res=await fetch(`${api}/deleteproduct/${id}`,{
+        method: "DELETE",
+        headers: {
+            "content-type":"application/json"
+        },
+        body:null
+    })
+
+    let result=await res.json();
+    alert(result.msg)
+    getproduct()
+    console.log(result)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////// add product  /////////////////////////////////
 
+const addproduct=document.getElementById("addproduct");
+addproduct.onclick=()=>{
+    addproductform()
+}
 
 const addproductform=()=>{
-    product_div.innerHTML="";
+    container.innerHTML="";
 
-    product_div.innerHTML=`
+    container.innerHTML=`
+
+    <form id="addpform" action="">
+            <input id="pdname" type="text" placeholder="product name" required >
+            <input id="pdprice" type="number" placeholder="product price" required>
+            <input id="pddesc" type="text" placeholder="product desc" required>
+            <input id="pdimg" type="text" placeholder="product image" required >
+            <input id="pdbrand" type="text" placeholder="product brand" required>
+            <input id="pdcat" type="text" placeholder="product category" required>
+            <input id="pdstock" type="number" placeholder="product stoke" required>
+            <input id="pdrating" type="number" placeholder="product rating" required>
+            <input  type="submit">
     
-    
-    
-    
+    </form>
     `
+
+
+    let addform=document.getElementById("addpform");
+
+        addform.onsubmit=async(e)=>{
+            e.preventDefault();
+
+            
+               let name = document.getElementById("pdname").value
+               let price = document.getElementById("pdprice").value
+               let description = document.getElementById("pddesc").value
+               let image = document.getElementById("pdimg").value
+               let brand = document.getElementById("pdbrand").value
+               let category = document.getElementById("pdcat").value
+               let stock = document.getElementById("pdstock").value
+               let rating = document.getElementById("pdrating").value
+
+
+               let obj={
+                name:name,
+                price:price,
+                description:description,
+                image:image,
+                brand:brand,
+                category:category,
+                stock:stock,
+                rating:rating
+               }
+            
+               
+               
+
+
+            let res=await fetch(`${api}/addproduct`,{
+                method:"POST",
+                
+                headers:{
+                    "content-type":"application/json"
+                },
+                body: JSON.stringify(obj)
+            })
+
+            let result=await res.json();
+            alert(result.msg)
+            console.log(result);
+
+
+            // empty the input feild
+            document.getElementById("pdname").value=""
+            document.getElementById("pdprice").value=""
+            document.getElementById("pddesc").value=""
+            document.getElementById("pdimg").value=""
+            document.getElementById("pdbrand").value=""
+            document.getElementById("pdcat").value=""
+            document.getElementById("pdstock").value=""
+            document.getElementById("pdrating").value=""
+
+  
+        }
+
 }
+
+
+
