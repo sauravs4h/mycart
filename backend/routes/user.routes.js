@@ -57,7 +57,7 @@ users.post("/login",async(req,res)=>{
             if(result){
                 var token = jwt.sign({ foo: 'bar' }, 'hush');
 
-                res.send({msg:"Login Successfull ", token:token,status:"error"});
+                res.send({msg:"Login Successfull ", token:token,status:"success"});
 
             }else{
                 res.send({msg:"Wrong craditionals",status:"error"})

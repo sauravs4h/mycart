@@ -136,6 +136,8 @@ const addproductform=()=>{
             <input id="pdimg" type="text" placeholder="product image" required >
             <input id="pdbrand" type="text" placeholder="product brand" required>
             <input id="pdcat" type="text" placeholder="product category" required>
+            <input id="pdsubcat" type="text" placeholder="product subcategory" >
+            <input id="pdcolour" type="text" placeholder="product colour" >
             <input id="pdstock" type="number" placeholder="product stoke" required>
             <input id="pdrating" type="number" placeholder="product rating" required>
             <input  type="submit">
@@ -156,6 +158,8 @@ const addproductform=()=>{
                let image = document.getElementById("pdimg").value
                let brand = document.getElementById("pdbrand").value
                let category = document.getElementById("pdcat").value
+               let subcategory = document.getElementById("pdsubcat").value
+               let colour = document.getElementById("pdcolour").value
                let stock = document.getElementById("pdstock").value
                let rating = document.getElementById("pdrating").value
 
@@ -167,6 +171,8 @@ const addproductform=()=>{
                 image:image,
                 brand:brand,
                 category:category,
+                subcategory:subcategory,
+                colour:colour,
                 stock:stock,
                 rating:rating
                }
