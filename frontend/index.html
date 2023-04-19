@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Admin-side/css/addproduct.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/home-page.css">
+    <title>My-cart</title>
 </head>
 <body>
-    <h1>my cart</h1>
+   
+    <nav id="navbar">
+        <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="my-cart">
+        <div id="search">
+            <input type="text">
+            <button>search</button>
+        </div>
+        <button id="loginbutton">login</button>
+        <button>cart</button>
+    </nav>
 
-    <div>
-        <form id="addpform" action="">
-            <input id="pdname" type="text" placeholder="product name" required >
-            <input id="pdprice" type="number" placeholder="product price" required>
-            <input id="pddesc" type="text" placeholder="product desc" required>
-            <input id="pdimg" type="text" placeholder="product image" required >
-            <input id="pdbrand" type="text" placeholder="product brand" required>
-            <input id="pdcat" type="text" placeholder="product category" required>
-            <input id="pdstock" type="number" placeholder="product stoke" required>
-            <input id="pdrating" type="number" placeholder="product rating" required>
-            <input  type="submit">
-            <button onclick="submitform">Submit</button>
-            
+    <div id="products">
+
+
+
     </div>
+
+    
 </body>
 </html>
+
+<script src="./scripts/homepage.js"></script>

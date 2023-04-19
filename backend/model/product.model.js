@@ -23,9 +23,16 @@ const productSchema=mongoose.Schema({
         type:String,
         require:true
     },
+    
     category:{
         type:String,
         require:true
+    },
+    subcategory:{
+        type:String
+    },
+    colour:{
+        type:String
     },
     stock:{
         type:Number,
