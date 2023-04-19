@@ -6,6 +6,7 @@ const app=express();
 const {connection}=require("./config/db");
 const {users}=require("./routes/user.routes");
 const {prodr}=require("./routes/product.routes")
+const {auth}=require("./middleware/auth")
 
 
 app.use(cors())

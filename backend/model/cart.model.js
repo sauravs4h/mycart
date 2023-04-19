@@ -10,5 +10,15 @@ const cartSchema=mongoose.Schema({
     total_price:{
         type:Number,
         require:true
+    },
+
+    productID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"product"
+    },
+
+    userID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
     }
 })
