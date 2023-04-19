@@ -22,3 +22,7 @@ const cartSchema=mongoose.Schema({
         ref:"user"
     }
 })
+
+const cartModel= mongoose.model("cart",cartSchema);
+
+module.exports={cartModel}
