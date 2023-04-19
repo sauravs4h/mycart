@@ -9,6 +9,10 @@ const auth=(req,res,next)=>{
     
      if(token){
             jwt.verify(token, 'hush', function(err, decoded) {
+
+              if(err){
+                res.send({msg:err.message,status:"error"})
+              }
                 const userid=decoded.userid
                 console.log(userid) 
                 payload.userID=userid;
