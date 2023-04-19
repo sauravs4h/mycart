@@ -50,12 +50,13 @@ users.post("/login",async(req,res)=>{
 
     const user_available= await Usermodel.findOne({email});
     const hashpassword=user_available?.password;
+    const userid=user_available?._id
 
     if(user_available){
 
         bcrypt.compare(password, hashpassword, function(err, result) {
             if(result){
-                var token = jwt.sign({ foo: 'bar' }, 'hush');
+                var token = jwt.sign({ userid: userid}, 'hush');
 
                 res.send({msg:"Login Successfull ", token:token,status:"success"});
 
