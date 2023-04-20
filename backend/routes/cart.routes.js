@@ -60,4 +60,20 @@ cartr.post("/addtocart",async(req,res)=>{
 
 })
 
+cartr.get("/allcart",async(req,res)=>{
+
+    const payload=req.body;
+    const userID=payload.userID;
+
+    try {
+       let cart=await cartModel.find({userID}).populate("productID");
+
+       res.send({data:cart,status:"success"})
+
+    } catch (error) {
+        res.send({msg:"error while fetching data",status:"error"})
+    }
+
+})
+
 module.exports={cartr}

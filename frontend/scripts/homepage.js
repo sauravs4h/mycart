@@ -1,38 +1,49 @@
 
 
+import {navbarr} from "../components/navbar.js"
 
-const api="http://localhost:8080/product"
+const navbar= document.getElementById("navbar");
 
+navbar.innerHTML=navbarr()
+
+
+const api="http://localhost:8080"
+
+const token= localStorage.getItem("mykart_token")
+
+//console.log("token",token)
 //http://localhost:8080/product/allproduct
 
 ///////////////// get allproduct ///////////////////////
 
 const getproduct=async()=>{
 
+    
+
     try {
 
-        const res=await fetch(`${api}/allproduct`,{
+        const res=await fetch(`${api}/product/allproduct`,{
             method:"GET",
             headers:{
                 "content-type":"application/json"
             }
         })
 
-         result=await res.json()
+         let result=await res.json()
         result=result.products
-         console.log(result)
+         console.log("result",result)
 
          appendproduct(result)
         
     } catch (error) {
-        
+        console.log(error)
     }
 }
 
 
 
 
-container=document.getElementById("products");
+let container=document.getElementById("products");
 
 
 const appendproduct=(res)=>{
@@ -59,15 +70,24 @@ const appendproduct=(res)=>{
         category.innerText=el.category
 
         let desc=document.createElement("p")
-        desc.innerText=el.description
+        desc.innerText=el.description;
+
+        let quantity=document.createElement("input");
+        quantity.setAttribute("type","number");
+        quantity.setAttribute("placeholder","enter quantity");
+        quantity.setAttribute("value",1);
 
         let add_to_cart=document.createElement("button")
         add_to_cart.innerText="Add to cart"
 
         add_to_cart.onclick=()=>{
 
-            addcart(el)
+            let q=quantity.value
+
+            addcart(el,q)
         }
+
+        
 
         // let deletee = document.createElement("button")
         // deletee.innerText="DELETE"
@@ -75,7 +95,7 @@ const appendproduct=(res)=>{
         //     deleteproduct(el._id)
         // }
 
-        div.append(img,name,price,brand,category,desc,add_to_cart)
+        div.append(img,name,price,brand,category,desc,quantity,add_to_cart)
 
         container.append(div)
     })
@@ -98,12 +118,49 @@ loginbutton.onclick=()=>{
 }
 
 
+// go for cart section 
+
+let goforcart= document.getElementById("cartbutton");
+
+goforcart.onclick=()=>{
+
+    window.location.href="./cart.html"
+}
+
+
 
 
 
 ///// add to cart 
 
 
-function addcart(el){
-    console.log(el)
+async function addcart(el,q){
+   // console.log(el,+q)
+
+   const productID=el._id;
+   const quantity=+q;
+
+
+   let cartobj={
+    productID,
+    quantity
+   }
+
+   console.log(cartobj)
+
+   const res= await fetch(`${api}/cart/addtocart`,{
+            method:"POST",
+            body:JSON.stringify(cartobj),
+            headers:{
+                "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
+                
+            }
+
+   })
+
+   const result= await res.json();
+   alert(result.msg)
+   
+   
 }
