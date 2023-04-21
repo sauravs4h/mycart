@@ -1,0 +1,21 @@
+#products{
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+#products>div{
+    display: flex;
+    height: 200px;
+    width: 50%;
+    border: 1px solid red;
+   justify-content: space-around;
+   text-align: center;
+   margin-top: 20px;
+}
+
+#products>div>:nth-child(1)>img{
+    margin-top: 20px;
+    height: 80%;
+}
