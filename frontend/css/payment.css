@@ -1,0 +1,17 @@
+
+
+.pcon{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 20px;
+}
+
+input{
+    height: 30px;
+}
+
+#container{
+    display: flex;
+    justify-content: space-around;
+}
