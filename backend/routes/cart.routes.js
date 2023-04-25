@@ -76,4 +76,63 @@ cartr.get("/allcart",async(req,res)=>{
 
 })
 
+
+// update the quantity 
+
+cartr.patch("/update/:id",async(req,res)=>{
+
+    let cartID=req.params.id
+    let payload=req.body;
+    let quantity=payload.quantity;
+    let userID=payload.userID;
+
+    try {
+
+        let itam=await cartModel.findOne({_id:cartID,userID});
+
+        if(itam){
+
+            let total_price= (itam.total_price/itam.quantity)*quantity;
+
+            await cartModel.findByIdAndUpdate({_id:cartID},{total_price,quantity});
+
+            res.send({msg:"update sucessfull",status:"sucess"})
+
+        }else{
+            res.send({msg:"invalid operation",status:"error"})
+        }
+        
+    } catch (error) {
+        res.send({msg:"something went wrong",status:"error"})
+    }
+
+    
+})
+
+// delete the cart
+
+cartr.delete("/deletecart/:id",async(req,res)=>{
+
+    let cartID=req.params.id
+    let userID=req.body.userID
+
+    let itam= await cartModel.findOne({_id:cartID,userID});
+
+    try {
+        if(itam){
+
+            await cartModel.findByIdAndDelete({_id:cartID});
+
+            res.send({msg:"delete successfull",status:"success"})
+
+        }else{
+            res.send({msg:"invalid opration",status:"error"})
+        }
+        
+    } catch (error) {
+        res.send({msg:"somehing went wrong",status:"error"})
+    }
+
+})
+
 module.exports={cartr}

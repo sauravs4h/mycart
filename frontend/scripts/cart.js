@@ -160,16 +160,81 @@ const appendproduct=(res)=>{
 
 /// update quantity
 
-function updatequantity(el,newq){
+async function updatequantity(el,newq){
 
-    console.log("hello",newq)
+    let id=el._id
+    let quantity=newq
+
+    try {
+
+        let res= await fetch(`${api}/cart/update/${id}`,{
+            method:"PATCH",
+            headers:{
+                "content-type":"application/json",
+                authorization: `Bearer ${token}`
+            },
+            body:JSON.stringify({quantity})
+        })
+
+        let result=await res.json()
+        get_cart_product()
+        console.log(result);
+        alert(result.msg)
+
+        
+    } catch (error) {
+
+        alert("error")
+        
+    }
+
+    
+   // console.log("hello",id)
 }
 
 
 
 /// delete cart
 
-function deletecart(el){
+async function deletecart(el){
 
-    console.log("helloddd")
+   // console.log("helloddd")
+   
+   let id=el._id
+ 
+
+   try {
+
+       let res= await fetch(`${api}/cart/deletecart/${id}`,{
+           method:"DELETE",
+           headers:{
+               "content-type":"application/json",
+               authorization: `Bearer ${token}`
+           },
+           
+       })
+
+       let result=await res.json()
+       get_cart_product()
+       console.log(result);
+       alert(result.msg)
+
+       
+   } catch (error) {
+
+       alert("error")
+       
+   }
+}
+
+
+
+//// checkout
+
+
+let checkout=document.getElementById("checkout");
+
+checkout.onclick=()=>{
+
+    window.location.href="./payment.html"
 }
