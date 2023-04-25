@@ -33,6 +33,36 @@ const token= localStorage.getItem("mykart_token")
 //console.log("token",token)
 //http://localhost:8080/product/allproduct
 
+///get total payment
+
+
+const yourtotal= async ()=>{
+
+    let res=await fetch(`${api}/cart/totalprice`,{
+        method:"GET",
+        headers:{
+            "content-type":"application/json",
+            authorization: `Bearer ${token}`
+        }
+    })
+
+    let result = await res.json()
+
+    console.log(result)
+
+    const yourt=document.getElementById("yourt");
+
+    yourt.innerText="Your total :- "+result.total_price
+
+}
+
+yourtotal()
+
+
+
+
+
+
 ///////////////// get allproduct ///////////////////////
 
 const get_cart_product=async()=>{
@@ -90,7 +120,7 @@ const appendproduct=(res)=>{
         let pdrname=document.createElement("h2")
         pdrname.innerText=el.productID.name
         let pdrprice=document.createElement("h2")
-        pdrprice.innerText="Total price : "+ el.total_price;
+        pdrprice.innerText=" price : "+ el.productID.price;
         let pdrquantity=document.createElement("select")
         pdrquantity.innerHTML=option()
         pdrquantity.value=el.quantity
@@ -178,6 +208,7 @@ async function updatequantity(el,newq){
 
         let result=await res.json()
         get_cart_product()
+        yourtotal()
         console.log(result);
         alert(result.msg)
 
@@ -215,7 +246,8 @@ async function deletecart(el){
        })
 
        let result=await res.json()
-       get_cart_product()
+       get_cart_product();
+       yourtotal()
        console.log(result);
        alert(result.msg)
 
@@ -229,10 +261,13 @@ async function deletecart(el){
 
 
 
+
+
+
 //// checkout
 
 
-let checkout=document.getElementById("checkout");
+let checkout=document.getElementById("checkoutbutton");
 
 checkout.onclick=()=>{
 

@@ -14,7 +14,7 @@ const auth=(req,res,next)=>{
                 res.send({msg:err.message,status:"error"})
               }
                 const userid=decoded.userid
-                console.log(userid) 
+               // console.log(userid) 
                 payload.userID=userid;
                 next()
               });

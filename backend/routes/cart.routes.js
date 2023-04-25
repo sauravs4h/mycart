@@ -7,9 +7,27 @@ const cartr=express.Router();
 
 cartr.use(express.json())
 
-cartr.get("/get",(req,res)=>{
-    console.log(req.body)
-    res.send("hello cart")
+cartr.get("/totalprice",async(req,res)=>{
+    
+    const userID=req.body.userID;
+
+    try {
+        const products= await cartModel.find({userID});
+
+        //console.log(products);
+        let tl=0
+
+        products.map((el)=>{
+            tl+=tl+el.total_price
+        })
+
+        //console.log(tl)
+
+        res.send({total_price:tl,status:"success"})
+        
+    } catch (error) {
+        res.send({msg:"something is wrong",status:"error"})
+    }
 })
 
 cartr.post("/addtocart",async(req,res)=>{

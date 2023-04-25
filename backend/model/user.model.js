@@ -13,6 +13,10 @@ const userSchema=mongoose.Schema({
         type:Number,
         require:true
     },
+    address:{
+        type:String,
+        
+    },
     password:{
         type:String,
         require:true
