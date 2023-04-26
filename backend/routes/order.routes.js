@@ -40,8 +40,8 @@ orderR.post("/placeorder",async(req,res)=>{
             await orderitam.save();
 
 
-            //await Usermodel.findByIdAndUpdate({_id:userID},{$push:{cart:newcart}})
-            await Usermodel.findByIdAndUpdate({_id:userID},{$push: {orders: orderitam}})
+            
+            await Usermodel.findByIdAndUpdate({_id:userID},{$push: {orders: orderitam},$set:{address:address,mobile_no:mobile_no}})
         })
 
         await cartModel.deleteMany({userID});
@@ -51,11 +51,11 @@ orderR.post("/placeorder",async(req,res)=>{
 
         console.log(products)
 
-        res.send("okk")
+        res.send({msg:"order successfull ",status:"success"})
         
     } catch (error) {
         console.log(error)
-        res.send("not okk")
+        res.send({msg:"order unsuccessfull ",status:"error"})
     }
 
 
