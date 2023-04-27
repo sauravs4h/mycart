@@ -19,7 +19,7 @@ let orderSchema=mongoose.Schema({
     },
     
     orderstatus:{
-        type:Boolean,
+        type:String,
         require:true
     }
 

@@ -10,6 +10,7 @@ const navbarr=()=>{
     </div>
     <button id="loginbutton">login</button>
     <button id="cartbutton">cart</button>
+    <button id="orderbutton">my orders</button>
 
     `
     )

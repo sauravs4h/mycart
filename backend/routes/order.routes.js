@@ -34,7 +34,7 @@ orderR.post("/placeorder",async(req,res)=>{
                 total_price,
                 productID,
                 userID,
-                orderstatus:true
+                orderstatus:"Placed"
             })
 
             await orderitam.save();
@@ -49,7 +49,7 @@ orderR.post("/placeorder",async(req,res)=>{
 
        
 
-        console.log(products)
+       
 
         res.send({msg:"order successfull ",status:"success"})
         
@@ -63,7 +63,64 @@ orderR.post("/placeorder",async(req,res)=>{
 })
 
 
+orderR.get("/allorders",async(req,res)=>{
 
+    let userID=req.body.userID
+
+    try {
+
+        let products=await Ordermodel.find({userID}).populate("productID")
+
+        res.send({data:products,status:"success"})
+        
+    } catch (error) {
+        res.send({msg:"something went wrong",status:"error"})
+    }
+})
+
+
+orderR.patch("/updatestatus/:id",async(req,res)=>{
+
+    let orderid=req.params.id
+
+    let order=await Ordermodel.findOne({_id:orderid});
+
+    if(order){
+
+        try {
+            await Ordermodel.findByIdAndUpdate({_id:orderid},{orderstatus:"Return"})
+            res.send({"msg":"return success",status:"success"})
+        } catch (error) {
+            res.send({"msg":"something went wrong",status:"error"})
+        }
+
+    }else{
+        res.send({"msg":"invalid request",status:"error"})
+    }
+
+})
+
+
+orderR.delete("/deleteorder/:id",async(req,res)=>{
+
+    let orderid=req.params.id
+
+    let order=await Ordermodel.findOne({_id:orderid});
+
+    if(order){
+
+        try {
+            await Ordermodel.findByIdAndDelete({_id:orderid})
+            res.send({"msg":"Delete success",status:"success"})
+        } catch (error) {
+            res.send({"msg":"something went wrong",status:"error"})
+        }
+
+    }else{
+        res.send({"msg":"invalid request",status:"error"})
+    }
+
+})
 
 
 module.exports={orderR}

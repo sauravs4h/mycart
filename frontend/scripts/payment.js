@@ -25,6 +25,17 @@ goforcart.onclick=()=>{
 }
 
 
+// go for order section
+
+let gofororder= document.getElementById("orderbutton");
+
+gofororder.onclick=()=>{
+
+    window.location.href="./order.html"
+}
+
+
+
 
 
 const api="http://localhost:8080"
