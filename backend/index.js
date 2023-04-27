@@ -9,6 +9,7 @@ const {prodr}=require("./routes/product.routes")
 const {auth}=require("./middleware/auth");
 const {cartr}=require("./routes/cart.routes")
 const {orderR}=require("./routes/order.routes")
+const {wishR}=require("./routes/wishlist.routes")
 
 
 app.use(cors())
@@ -17,7 +18,7 @@ app.use("/user",users)
 app.use("/product",prodr);
 app.use("/cart",auth,cartr)
 app.use("/order",auth,orderR)
-
+app.use("/wishlist",auth,wishR)
 
 
 app.get("/",(req,res)=>{
