@@ -89,13 +89,13 @@ const appendproduct=(res)=>{
 
         
 
-        // let deletee = document.createElement("button")
-        // deletee.innerText="DELETE"
-        // deletee.onclick=()=>{
-        //     deleteproduct(el._id)
-        // }
+        let addtowishlist = document.createElement("button")
+        addtowishlist.innerText="add to wishlist"
+        addtowishlist.onclick=()=>{
+            wishproduct(el._id)
+        }
 
-        div.append(img,name,price,brand,category,desc,quantity,add_to_cart)
+        div.append(img,name,price,brand,category,desc,quantity,add_to_cart,addtowishlist)
 
         container.append(div)
     })
@@ -140,6 +140,18 @@ gofororder.onclick=()=>{
 
 
 
+// go for wishlist section
+
+let goforwish= document.getElementById("wishbutton");
+
+goforwish.onclick=()=>{
+
+    window.location.href="./wishlist.html"
+}
+
+
+
+
 
 ///// add to cart 
 
@@ -173,4 +185,30 @@ async function addcart(el,q){
    alert(result.msg)
    
    
+}
+
+// add to wishlist 
+
+async function wishproduct(id){
+    let productID=id;
+
+    try {
+
+        let res= await fetch(`${api}/wishlist/addtowish`,{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                authorization: `Bearer ${token}`
+            },
+            body:JSON.stringify({productID})
+        })
+
+        let result=await res.json();
+        alert(result.msg)
+        console.log(result)
+        
+    } catch (error) {
+        alert("something goes wrong")
+        console.log(error)
+    }
 }
