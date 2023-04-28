@@ -37,40 +37,50 @@ cartr.post("/addtocart",async(req,res)=>{
     let userID=payload.userID;
     let quantity=payload.quantity
 
-    let product=await Productmodel.findOne({_id:productID});
-    let price=product?.price
+    let cart_available=await cartModel.findOne({productID,userID});
 
-   try {
-
-    if(product){
-
-        let total_price=quantity*price;
-
-        let newcart= new cartModel({
-            quantity:quantity,
-            total_price:total_price,
-            productID:productID,
-            userID:userID
-        })
-
-        await newcart.save();
-
-        await Usermodel.findByIdAndUpdate({_id:userID},{$push:{cart:newcart}})
-
-        res.send({msg:"add to cart successfull",status:"success"})
-        
-
-
+    if(cart_available){
+        res.send({msg:"allready in the cart",status:"error"})
     }else{
-        res.send({msg:"product is not available",status:"error"})
+
+        let product=await Productmodel.findOne({_id:productID});
+        let price=product?.price
+
+        try {
+
+            if(product){
+
+                let total_price=quantity*price;
+
+                let newcart= new cartModel({
+                    quantity:quantity,
+                    total_price:total_price,
+                    productID:productID,
+                    userID:userID
+                })
+
+                await newcart.save();
+
+                await Usermodel.findByIdAndUpdate({_id:userID},{$push:{cart:newcart}})
+
+                res.send({msg:"add to cart successfull",status:"success"})
+                
+
+
+            }else{
+                res.send({msg:"product is not available",status:"error"})
+            }
+            
+        } catch (error) {
+
+            res.send({msg:error,status:"error"})
+            
+        }
+
+
     }
-    
-   } catch (error) {
 
-    res.send({msg:error,status:"error"})
     
-   }
-
     // console.log(product)
     // res.send("prodict");
 

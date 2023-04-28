@@ -29,6 +29,8 @@ wishR.post("/addtowish",async(req,res)=>{
 
             await wish.save();
 
+            await Usermodel.findByIdAndUpdate({_id:userID},{$push:{wishlist:wish}})
+
             res.send({msg:"wishlist added successfully",status:"success"})
             
         } catch (error) {

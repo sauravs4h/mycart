@@ -111,6 +111,9 @@ const appendproduct=(res)=>{
         let pdrdelete=document.createElement("button")
         pdrdelete.innerText="Remove from wishlist";
 
+        pdrdelete.onclick=()=>{
+            removewish(el._id)
+        }
        
 
         rightdiv.append(pdrname,pdrprice,pdrdelete)
@@ -124,4 +127,29 @@ const appendproduct=(res)=>{
 
     
 
+}
+
+
+// remove from wishlist 
+
+async function removewish(id){
+    //console.log(id)
+
+    try {
+        let res=await fetch(`${api}/wishlist/deletewish/${id}`,{
+            method:"DELETE",
+            headers:{
+                "content-type":"application/json",
+                authorization: `Bearer ${token}`
+                
+            }
+        })
+
+        let result=await res.json()
+        console.log(result);
+        get_order_product()
+        alert(result.msg)
+    } catch (error) {
+        alert("something went wrong")
+    }
 }
