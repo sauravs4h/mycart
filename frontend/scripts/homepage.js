@@ -1,11 +1,5 @@
 
 
-import {navbarr} from "../components/navbar.js"
-
-const navbar= document.getElementById("navbar");
-
-navbar.innerHTML=navbarr()
-
 
 const api="http://localhost:8080"
 
@@ -108,46 +102,46 @@ getproduct();
 
 
 
-/// go for login
+// /// go for login
 
-let goforlogin=document.getElementById("loginbutton");
+// let goforlogin=document.getElementById("loginbutton");
 
-loginbutton.onclick=()=>{
+// loginbutton.onclick=()=>{
 
-    window.location.href="./login.html"
-}
-
-
-// go for cart section 
-
-let goforcart= document.getElementById("cartbutton");
-
-goforcart.onclick=()=>{
-
-    window.location.href="./cart.html"
-}
+//     window.location.href="./login.html"
+// }
 
 
-// go for order section
+// // go for cart section 
 
-let gofororder= document.getElementById("orderbutton");
+// let goforcart= document.getElementById("cartbutton");
 
-gofororder.onclick=()=>{
+// goforcart.onclick=()=>{
 
-    window.location.href="./order.html"
-}
-
-
+//     window.location.href="./cart.html"
+// }
 
 
-// go for wishlist section
+// // go for order section
 
-let goforwish= document.getElementById("wishbutton");
+// let gofororder= document.getElementById("orderbutton");
 
-goforwish.onclick=()=>{
+// gofororder.onclick=()=>{
 
-    window.location.href="./wishlist.html"
-}
+//     window.location.href="./order.html"
+// }
+
+
+
+
+// // go for wishlist section
+
+// let goforwish= document.getElementById("wishbutton");
+
+// goforwish.onclick=()=>{
+
+//     window.location.href="./wishlist.html"
+// }
 
 
 

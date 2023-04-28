@@ -1,0 +1,19 @@
+#loginform{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+#loginform>input{
+
+    height: 30px;
+}
+
+.ls{
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    width: 200px;
+}
+

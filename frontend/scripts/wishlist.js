@@ -1,39 +1,35 @@
-import {navbarr} from "../components/navbar.js"
 
-let navbar=document.getElementById("navbar")
-
-navbar.innerHTML=navbarr()
 
 
 
 /// go for login
 
-let goforlogin=document.getElementById("loginbutton");
+// let goforlogin=document.getElementById("loginbutton");
 
-loginbutton.onclick=()=>{
+// loginbutton.onclick=()=>{
 
-    window.location.href="./login.html"
-}
-
-
-// go for cart section 
-
-let goforcart= document.getElementById("cartbutton");
-
-goforcart.onclick=()=>{
-
-    window.location.href="./cart.html"
-}
+//     window.location.href="./login.html"
+// }
 
 
-// go for order section
+// // go for cart section 
 
-let gofororder= document.getElementById("orderbutton");
+// let goforcart= document.getElementById("cartbutton");
 
-gofororder.onclick=()=>{
+// goforcart.onclick=()=>{
 
-    window.location.href="./order.html"
-}
+//     window.location.href="./cart.html"
+// }
+
+
+// // go for order section
+
+// let gofororder= document.getElementById("orderbutton");
+
+// gofororder.onclick=()=>{
+
+//     window.location.href="./order.html"
+// }
 
 
 

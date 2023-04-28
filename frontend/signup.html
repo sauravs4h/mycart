@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/login.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="./css/signup.css">
+    <title>Document</title>
 </head>
 <body>
 
@@ -15,21 +15,17 @@
     </div>
 
     <div>
-        <form id="loginform" action="">
+        <form id="signupform" action="">
+            <input id="name" type="text" placeholder="Name" required>
             <input id="emailid" type="email" placeholder="Enter your email" required>
+            <input id="mobnumber" type="number" placeholder="Mobile no." required>
             <input id="password" type="text" placeholder="Enter your password" required>
-           
+            
             <input type="submit">
         </form>
-    </div>
-
-    <div class="ls">
-        <button id="logout"> logout</button>
-        <button id="signup">signup</button>
-        
     </div>
     
 </body>
 </html>
-<script type="module" src="./scripts/login.js"></script>
+<script type="module" src="./scripts/signup.js"></script>
 <script type="module" src="./scripts/navbar.js"></script>
