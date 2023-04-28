@@ -1,4 +1,14 @@
 
+// goforsignup 
+
+let goforsignup = document.getElementById("signup");
+
+goforsignup.onclick=()=>{
+
+    window.location.href="./signup.html"
+}
+
+
     
 
 const api="http://localhost:8080/user"

@@ -17,8 +17,8 @@ cartr.get("/totalprice",async(req,res)=>{
         //console.log(products);
         let tl=0
 
-        products.map((el)=>{
-            tl+=tl+el.total_price
+        products.forEach((el)=>{
+            tl+=el.total_price
         })
 
         //console.log(tl)
