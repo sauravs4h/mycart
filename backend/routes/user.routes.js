@@ -2,6 +2,8 @@ const express=require("express");
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
+ const {Blacklist}=require("../blacklists/blacklist")
+
 
 const {Usermodel}=require("../model/user.model");
 const users=express.Router();
@@ -13,7 +15,7 @@ users.get("/",(req,res)=>{
     res.send({msg:"this is user route"})
 })
 
-
+ // signup
 users.post("/signup",async(req,res)=>{
 
     const payload=req.body;
@@ -41,6 +43,7 @@ users.post("/signup",async(req,res)=>{
 
 })
 
+// login
 
 users.post("/login",async(req,res)=>{
 
@@ -54,6 +57,7 @@ users.post("/login",async(req,res)=>{
 
     if(user_available){
 
+        
         bcrypt.compare(password, hashpassword, function(err, result) {
             if(result){
                 var token = jwt.sign({ userid: userid}, 'hush');
@@ -70,6 +74,29 @@ users.post("/login",async(req,res)=>{
     }
     
 })
+
+// logout
+
+users.post("/logout",(req,res)=>{
+
+    const payload=req.body;
+
+    let token=payload.token;
+
+    try {
+
+       // Blacklist.push(token);
+       (token,{ maxAge: -1})
+        res.send({msg:"logout successfully",status:"success"});
+        
+    } catch (error) {
+        console.log(error)
+        res.send({msg:"logout unsuccessfull",status:"error"});
+    }
+
+})
+
+
 
 
 

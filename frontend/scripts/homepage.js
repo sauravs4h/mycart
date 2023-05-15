@@ -156,6 +156,7 @@ async function addcart(el,q){
    const productID=el._id;
    const quantity=+q;
 
+   
 
    let cartobj={
     productID,
