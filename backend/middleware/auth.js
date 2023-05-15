@@ -1,7 +1,9 @@
 var jwt = require('jsonwebtoken');
 
+const {client}=require("../services/redis")
 
-const auth=(req,res,next)=>{
+
+const auth=async(req,res,next)=>{
 
      const token=req.headers.authorization?.split(" ")[1];
 
@@ -10,16 +12,30 @@ const auth=(req,res,next)=>{
      
     
      if(token){
-            jwt.verify(token, 'hush', function(err, decoded) {
 
-              if(err){
-                res.send({msg:err.message,status:"error"})
-              }
-                const userid=decoded.userid
-               // console.log(userid) 
-                payload.userID=userid;
-                next()
-              });
+             const isblack=await client.SISMEMBER("blacklisttoken",token)
+
+             //console.log(isblack)
+
+            if(isblack){
+              res.send({msg:"please login" , status:"error"})
+            }
+            else{
+
+              jwt.verify(token, 'hush', function(err, decoded) {
+
+                if(err){
+                  res.send({msg:err.message,status:"error"})
+                }
+                  const userid=decoded.userid
+                 // console.log(userid) 
+                  payload.userID=userid;
+                  next()
+                });
+
+            }
+
+            
 
      }else{
         res.send({msg:"you are not authorize to access this please login", status:"error"})

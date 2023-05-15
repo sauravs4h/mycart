@@ -46,3 +46,30 @@ loginform.onsubmit=async(e)=>{
     }
     
 }
+
+// goforlogout
+
+let goforlogout = document.getElementById("logout");
+
+goforlogout.onclick=async()=>{
+    const token= localStorage.getItem("mykart_token")
+
+    try {
+
+        let logout=await fetch(`${api}/logout`,{
+            method:"GET",
+            headers:{
+                "content-type":"application/json",
+                authorization: `Bearer ${token}`
+                
+            }
+        })
+
+        let res=await logout.json();
+
+        console.log(res)
+        
+    } catch (error) {
+        
+    }
+}

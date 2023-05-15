@@ -10,7 +10,7 @@ const {auth}=require("./middleware/auth");
 const {cartr}=require("./routes/cart.routes")
 const {orderR}=require("./routes/order.routes")
 const {wishR}=require("./routes/wishlist.routes")
-
+const {client}=require("./services/redis")
 
 app.use(cors())
 app.use(express.json());
@@ -31,6 +31,7 @@ app.get("/",(req,res)=>{
 app.listen(8080,async()=>{
     try {
         await connection
+        await client.connect();
         console.log("connected to db")
     } catch (error) {
         console.log("not connected to db")
