@@ -60,10 +60,17 @@ const get_order_product=async()=>{
         })
 
          let result=await res.json()
-        result=result.data
+        
          console.log("result",result)
 
-         appendproduct(result)
+         if (result.status=="error"){
+            alert(result.msg);
+            window.location.href="./login.html";
+         }else{
+            appendproduct(result.data)
+         }
+
+         
         
     } catch (error) {
         console.log(error)

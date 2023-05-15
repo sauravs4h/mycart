@@ -55,10 +55,18 @@ const get_order_product=async()=>{
         })
 
          let result=await res.json()
-        result=result.wishlist
+       
          console.log("result",result)
 
-         appendproduct(result)
+         if (result.status=="error"){
+            alert(result.msg);
+            window.location.href="./login.html";
+         }
+         else{
+            result=result.wishlist
+            appendproduct(result)
+         }
+         
         
     } catch (error) {
         console.log(error)

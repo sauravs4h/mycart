@@ -1,8 +1,7 @@
 const express=require("express");
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-
- const {Blacklist}=require("../blacklists/blacklist")
+const {client}=require("../services/redis")
 
 
 const {Usermodel}=require("../model/user.model");
@@ -77,17 +76,21 @@ users.post("/login",async(req,res)=>{
 
 // logout
 
-users.post("/logout",(req,res)=>{
+users.get("/logout",async(req,res)=>{
 
-    const payload=req.body;
-
-    let token=payload.token;
+    
+    const token=req.headers.authorization?.split(" ")[1];
 
     try {
 
-       // Blacklist.push(token);
-       (token,{ maxAge: -1})
-        res.send({msg:"logout successfully",status:"success"});
+       if(token){
+        //console.log(token)
+        await client.SADD("blacklisttoken",token);
+        res.send({msg:"logout successsfull", status:"success"})
+       }else{
+        res.send({msg:"logout not successsfull", status:"error"})
+       }
+      
         
     } catch (error) {
         console.log(error)
