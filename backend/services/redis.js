@@ -1,4 +1,4 @@
-// const Redis = require("ioredis");
+const Redis = require("ioredis");
 // const redis = new Redis({
 //     port:19853,
 //     host:"redis-19853.c212.ap-south-1-1.ec2.cloud.redislabs.com",
@@ -10,7 +10,7 @@
 // module.exports={redis};
 
 
-const redis=require('redis');
+const redis= require('redis');
 const client=redis.createClient({url:process.env.redisURL});
 client.on("error", (err) => console.log("Redis Client Error", err));
 

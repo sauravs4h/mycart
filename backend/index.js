@@ -12,6 +12,7 @@ const {orderR}=require("./routes/order.routes")
 const {wishR}=require("./routes/wishlist.routes")
 const {client}=require("./services/redis")
 
+
 app.use(cors())
 app.use(express.json());
 app.use("/user",users)

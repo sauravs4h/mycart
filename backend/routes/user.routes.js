@@ -14,6 +14,20 @@ users.get("/",(req,res)=>{
     res.send({msg:"this is user route"})
 })
 
+// get all users
+// users.get("/allusers",async(req,res)=>{
+
+//     try {
+
+//         let users=await Usermodel.find();
+//         res.send({users:users,status:"success"})
+        
+//     } catch (error) {
+//         res.send({msg:"not get users",status:"error"})
+//     }
+//     res.send({msg:"not get users",status:"error"})
+// })
+
  // signup
 users.post("/signup",async(req,res)=>{
 
@@ -67,7 +81,6 @@ users.post("/login",async(req,res)=>{
                 res.send({msg:"Wrong craditionals",status:"error"})
             }
         });
-
     }else{
         res.send({msg:"Please Signup First",status:"error"});
     }
