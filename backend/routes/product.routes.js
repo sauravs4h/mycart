@@ -18,6 +18,8 @@ prodr.get("/allproduct",async(req,res)=>{
     }
 })
 
+// get product by id (add this route also);
+
 prodr.post("/addproduct",async(req,res)=>{
     const payload=req.body;
 

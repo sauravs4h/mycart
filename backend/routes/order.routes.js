@@ -10,9 +10,9 @@ const orderR=express.Router();
 
 
 
-orderR.get("/order",(req,res)=>{
-    res.send("kkk")
-})
+// orderR.get("/order",(req,res)=>{
+//     res.send("kkk")
+// })
 
 orderR.post("/placeorder",async(req,res)=>{
 

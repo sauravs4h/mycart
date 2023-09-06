@@ -10,8 +10,13 @@ const Redis = require("ioredis");
 // module.exports={redis};
 
 
-const redis= require('redis');
+ const redis= require('redis');
 const client=redis.createClient({url:process.env.redisURL});
 client.on("error", (err) => console.log("Redis Client Error", err));
+
+
+
+
+
 
 module.exports={client}
