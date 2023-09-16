@@ -22,6 +22,12 @@ const userSchema=mongoose.Schema({
         require:true
     },
 
+    role:{
+        type:String,
+        enum:["Customer","Seller","Admin"],
+        default:"Customer"
+    },
+
     wishlist:[
         {
             type:mongoose.Schema.Types.ObjectId,

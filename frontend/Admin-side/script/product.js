@@ -163,6 +163,7 @@ const addproductform=()=>{
                let stock = document.getElementById("pdstock").value
                let rating = document.getElementById("pdrating").value
 
+               
 
                let obj={
                 name:name,

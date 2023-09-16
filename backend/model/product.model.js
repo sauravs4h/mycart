@@ -25,7 +25,8 @@ const productSchema=mongoose.Schema({
     },
     
     category:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"category",
         require:true
     },
     subcategory:{

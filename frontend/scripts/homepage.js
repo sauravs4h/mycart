@@ -61,7 +61,7 @@ const appendproduct=(res)=>{
         brand.innerText=el.brand
 
         let category=document.createElement("h3")
-        category.innerText=el.category
+        category.innerText=el.category.title
 
         let desc=document.createElement("p")
         desc.innerText=el.description;

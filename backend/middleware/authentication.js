@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 const {client}=require("../services/redis")
 
 
-const auth=async(req,res,next)=>{
+const authentication=async(req,res,next)=>{
 
      const token=req.headers.authorization?.split(" ")[1];
 
@@ -30,6 +30,9 @@ const auth=async(req,res,next)=>{
                   const userid=decoded.userid
                  // console.log(userid) 
                   payload.userID=userid;
+                  payload.role=decoded.role;
+
+                  //console.log(decoded)
                   next()
                 });
 
@@ -46,4 +49,4 @@ const auth=async(req,res,next)=>{
 
 }
 
-module.exports={auth}
+module.exports={authentication}

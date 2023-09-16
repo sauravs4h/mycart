@@ -9,8 +9,25 @@ prodr.use(express.json());
 
 prodr.get("/allproduct",async(req,res)=>{
     try {
-        const products= await Productmodel.find();
+        const products= await Productmodel.find().populate("category");
         res.send({products:products,status:"success"})
+        
+    } catch (error) {
+        res.send({msg:"went wrong"})
+        console.log(error)
+    }
+})
+
+// products by category
+
+prodr.get("/prodcategory/:category",async(req,res)=>{
+    let category=req.params.category
+    try {
+        const products= await Productmodel.find().populate({path:"category",match:{title:category},select: 'title'});
+        
+        const filteredProducts = products.filter(product => product.category !== null);
+        //.populate({path:"category",match:{title:category},select: 'title'});
+        res.send({products:filteredProducts,status:"success"})
         
     } catch (error) {
         res.send({msg:"went wrong"})
@@ -28,6 +45,7 @@ prodr.post("/addproduct",async(req,res)=>{
         await product.save();
         res.send({msg:"Add product successfully",status:"success"});
     } catch (error) {
+        console.log(error)
         res.send({msg:"something went wrong",status:"error"})
     }
     
