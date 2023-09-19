@@ -35,6 +35,20 @@ prodr.get("/prodcategory/:category",async(req,res)=>{
     }
 })
 
+
+// get a specific product by id
+
+prodr.get("/getoneproduct/:id",async(req,res)=>{
+    let productid=req.params.id;
+    try {
+        let product=await Productmodel.find({_id:productid});
+        res.status(201).json({products:product,status:"success"})
+    } catch (error) {
+        res.send({msg:"went wrong"})
+        console.log(error)
+    }
+})
+
 // get product by id (add this route also);
 
 prodr.post("/addproduct",async(req,res)=>{
