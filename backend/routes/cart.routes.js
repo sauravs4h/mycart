@@ -105,6 +105,25 @@ cartr.get("/allcart",async(req,res)=>{
 })
 
 
+// total items
+
+cartr.get("/totalitems",async(req,res)=>{
+
+    const payload=req.body;
+    const userID=payload.userID;
+
+    try {
+       let count=await cartModel.find({userID}).count();
+
+       res.send({count:count,status:"success"})
+
+    } catch (error) {
+        res.send({msg:"error while fetching data",status:"error"})
+    }
+
+})
+
+
 // update the quantity 
 
 cartr.patch("/update/:id",async(req,res)=>{
