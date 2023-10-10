@@ -33,11 +33,13 @@ loginButton.addEventListener("click", () => {
 
             let responce=await res.json();
             console.log(responce);
-            alert(responce.status);
             if(responce.status=="success"){
+
                 let token=responce.token;
                 localStorage.setItem("mycartseller",token);
-                window.location.href="/mycartfront/Simple/seller/seller.html"
+                 alert("login successfull");
+
+                window.location.href="./seller.html"
             }else{
                 alert("wrong credentials, try again")
             }
