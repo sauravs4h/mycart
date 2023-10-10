@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My-Cart Seller Portal</title>
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My-Cart Seller Portal</h1>
+    </header>
+    <div class="form-container">
+        <div class="toggle-buttons">
+            <button id="login-button" class="active-button">Login</button>
+            <button id="signup-button">Signup</button>
+        </div>
+        <div id="login-form" class="form">
+            <h2>Login</h2>
+            <form id="logform" class="inform">
+                <input id="logemail" type="email" placeholder="Email" required>
+                <input id="logpassword" type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="signup-form" class="form">
+            <h2>Signup</h2>
+            <form id="signform" class="inform">
+                <input id="signame" type="text" placeholder="Name" required>
+                <input id="signemail" type="email" placeholder="Email" required>
+                <input id="sigmob" type="tel" placeholder="Mobile Number" required>
+                <textarea id="signaddress" placeholder="Address" rows="4" required></textarea>
+                <input id="signpass" type="password" placeholder="Password" required>
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>

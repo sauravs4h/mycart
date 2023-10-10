@@ -1,0 +1,63 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.toggle-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.active-button {
+    background-color: #333;
+    color: #fff;
+}
+
+.form {
+    display: none;
+    
+}
+
+.inform{
+    display: flex;
+    flex-direction: column;
+}
+
+.inform > input{
+    height: 30px;
+    margin-top: 5px;
+}
+
+.form h2 {
+    margin-top: 0;
+}
+
+/* Style your form fields and buttons here */

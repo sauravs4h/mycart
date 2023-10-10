@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - My-Cart</title>
+    <link rel="stylesheet" href="./style/seller.css">
+</head>
+<body>
+    <header>
+        <h1>Seller Dashboard</h1>
+    </header>
+    <main>
+        <section class="categories-section">
+            <h2>Categories</h2>
+            <!-- Display categories here (fetch from backend) -->
+            <ol id="category-list">
+                <li>Category 1</li>
+                <li>Category 2</li>
+                <li>Category 3</li>
+            </ol>
+            <div class="add-category-form">
+                <h3>Add New Category</h3>
+                <form id="add-category-form">
+                    <input type="text" id="category-title" placeholder="Category Title" required>
+                    <button type="submit">Add Category</button>
+                </form>
+            </div>
+        </section>
+        
+       
+<!-- Inside the "Add Product" section -->
+<section class="add-product-section">
+    <h2>Add Product</h2>
+    <form id="add-product-form">
+        <input type="text" id="product-name" placeholder="Product Name" required>
+        <input type="number" id="product-price" placeholder="Price" required>
+        <textarea id="product-description" placeholder="Description" rows="4" required></textarea>
+        <input type="url" id="product-image" placeholder="Image URL" required>
+        <input type="text" id="product-brand" placeholder="Brand" required>
+        
+        <!-- Dynamic options for the "category" field -->
+        <select id="product-category" required>
+            <!-- Options will be dynamically generated using JavaScript -->
+        </select>
+        
+        <input type="text" id="product-subcategory" placeholder="Subcategory" required>
+        <input type="text" id="product-colour" placeholder="Colour" required>
+        <input type="number" id="product-stock" placeholder="Stock" required>
+        <input type="number" id="product-rating" placeholder="Rating" required>
+        
+        <button type="submit">Add Product</button>
+    </form>
+</section>
+
+
+    </main>
+    <script src="./scripts/seller.js"></script>
+</body>
+</html>
