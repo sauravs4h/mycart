@@ -68,6 +68,8 @@ goforlogout.onclick=async()=>{
         let res=await logout.json();
 
         console.log(res)
+
+        alert(res.msg);
         
     } catch (error) {
         
