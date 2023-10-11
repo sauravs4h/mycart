@@ -1,0 +1,218 @@
+body {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  section {
+    display: flex;
+  }
+  section > div:first-child {
+    width: 60%;
+  }
+  section > div:last-child {
+    width: 35%;
+  }
+  #mheading {
+    margin-left: 13%;
+    margin-top: 3%;
+  }
+  #sheading {
+    margin-left: 13%;
+    margin-top: 5%;
+  }
+  
+  #maincard {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    /* border: 1px solid gray; */
+    width: 70%;
+    /* margin-left: 13%;
+     */
+    margin: 30px auto 50px;
+    /* padding: 20px; */
+    display: flex;
+    justify-content: space-between;
+  }
+  #dopayment {
+    /* border: 1px solid red; */
+    /* margin-right: 30px; */
+    padding: 10px 20px;
+  }
+  
+  #paymethod {
+    width: 50%;
+    padding: 0 20px;
+    background-color: rgb(243, 244, 245);
+  }
+  .paymentname {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-left: 10px;
+  }
+  .paymentname > :nth-child(2) {
+    margin-top: 0px;
+    color: #6e7883;
+  }
+  #craditcard {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #upi {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  #ibanking {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  #cod {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* 
+  #footer{
+      margin-top: 500px;
+  } */
+  
+  #carditcarddetail > :nth-child(1) {
+    margin: 15px 0;
+  }
+  #carditcarddetail > :nth-child(3) > input {
+    width: 100%;
+    padding: 0 10px;
+    margin: 15px 0;
+  }
+  #carditcarddetail > :nth-child(4) input {
+    padding: 0 10px;
+    margin: 10px 0;
+  }
+  
+  .carddetail {
+    height: 40px;
+  }
+  
+  #paybutton {
+    width: 100%;
+    height: 40px;
+    color: white;
+    background-color: rgb(232, 0, 113);
+    border: none;
+    margin-top: 15px;
+  }
+  
+  #savedetail {
+    margin-top: 15px;
+  }
+  
+  #upidetail > :nth-child(1) {
+    margin-top: 25px;
+  }
+  #upidetail > :nth-child(3) > input {
+    width: 100%;
+    margin-top: 30px;
+  }
+  #upidetail > :nth-child(4) {
+    margin-top: 20px;
+  }
+  
+  .upidetail {
+    height: 40px;
+  }
+  
+  #savedetail {
+    margin-top: 15px;
+  }
+  
+  #netbdetail > :nth-child(1) {
+    margin-top: 25px;
+  }
+  #netbdetail > :nth-child(3) > input {
+    width: 100%;
+    margin-top: 30px;
+  }
+  #netbdetail > :nth-child(4) {
+    margin-top: 20px;
+  }
+  
+  .netdetail {
+    height: 40px;
+  }
+  
+  #savedetail {
+    margin-top: 15px;
+  }
+  
+  .bankname {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  #coddetail {
+    margin-top: 100px;
+    margin-right: 50px;
+  }
+  /* #coddetail > :nth-child(1) {
+    
+  } */
+  
+  #confirmdetails {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  
+  #pimg {
+    height: 150px;
+  }
+  #pimg > img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #bagdetailbox {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+      rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 80%;
+    padding: 20px;
+  }
+  
+  #bag {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  #bagaddress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+  }
+  #bagmobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    /* margin-bottom: 15px;
+    margin-top: 15px; */
+  }
+  #bagaddress input,
+  #bagmobile input {
+    padding: 10px 7px;
+    color: rgb(163, 170, 177);
+    font-weight: 600;
+    /* flex-grow: 1; */
+  }
+  #bagprice {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }

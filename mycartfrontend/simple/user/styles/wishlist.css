@@ -1,0 +1,79 @@
+/* Reset some default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Category product page styles */
+/* .category-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+} */
+
+/* Sidebar styles */
+/* .sidebar {
+    width: 20%;
+    padding: 20px;
+    background-color: #f7f7f7; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+} */
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+/* Product grid styles */
+.product-grid {
+
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 60px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Product card styles */
+.product-card {
+    width: calc(20% - 10px); /* 5 products in a row with a small gap */
+    margin-right: 20px; /* Adjust the margin between products */
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff; /* Card background color */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    
+    max-width: 100%;
+    height: 250px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #333; /* Price color */
+}
+
+
+.romovebutton{
+    background-color: #ff6347; /* Remove button color */
+    color: #fff; /* Text color */
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
