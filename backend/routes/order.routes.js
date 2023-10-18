@@ -9,10 +9,7 @@ const {Ordermodel}=require("../model/order.model")
 const orderR=express.Router();
 
 
-
-// orderR.get("/order",(req,res)=>{
-//     res.send("kkk")
-// })
+//route for placeorder
 
 orderR.post("/placeorder",async(req,res)=>{
 
@@ -46,22 +43,16 @@ orderR.post("/placeorder",async(req,res)=>{
 
         await cartModel.deleteMany({userID});
 
-
-       
-
-       
-
-        res.send({msg:"order successfull ",status:"success"})
+        res.status(201).json({msg:"order successfull ",status:"success"})
         
     } catch (error) {
         console.log(error)
-        res.send({msg:"order unsuccessfull ",status:"error"})
+        res.status(500).json({msg:"order unsuccessfull ",status:"error"})
     }
-
-
-
 })
 
+
+// route for get all order
 
 orderR.get("/allorders",async(req,res)=>{
 
@@ -71,14 +62,15 @@ orderR.get("/allorders",async(req,res)=>{
 
         let products=await Ordermodel.find({userID}).populate("productID")
 
-        res.send({data:products,status:"success"})
+        res.status(201).json({data:products,status:"success"})
         
     } catch (error) {
-        res.send({msg:"something went wrong",status:"error"})
+        res.status(500).json({msg:"something went wrong",status:"error"})
     }
 })
 
 
+// route for update the status of order
 orderR.patch("/updatestatus/:id",async(req,res)=>{
 
     let orderid=req.params.id
@@ -89,18 +81,18 @@ orderR.patch("/updatestatus/:id",async(req,res)=>{
 
         try {
             await Ordermodel.findByIdAndUpdate({_id:orderid},{orderstatus:"Return"})
-            res.send({"msg":"return success",status:"success"})
+            res.status(201).json({"msg":"return success",status:"success"})
         } catch (error) {
-            res.send({"msg":"something went wrong",status:"error"})
+            res.status(500).json({"msg":"something went wrong",status:"error"})
         }
 
     }else{
-        res.send({"msg":"invalid request",status:"error"})
+        res.status(401).json({"msg":"invalid request",status:"error"})
     }
 
 })
 
-
+// route for delete the order
 orderR.delete("/deleteorder/:id",async(req,res)=>{
 
     let orderid=req.params.id
@@ -111,13 +103,13 @@ orderR.delete("/deleteorder/:id",async(req,res)=>{
 
         try {
             await Ordermodel.findByIdAndDelete({_id:orderid})
-            res.send({"msg":"Delete success",status:"success"})
+            res.status(201).json({"msg":"Delete success",status:"success"})
         } catch (error) {
-            res.send({"msg":"something went wrong",status:"error"})
+            res.status(500).json({"msg":"something went wrong",status:"error"})
         }
 
     }else{
-        res.send({"msg":"invalid request",status:"error"})
+        res.status(401).json({"msg":"invalid request",status:"error"})
     }
 
 })

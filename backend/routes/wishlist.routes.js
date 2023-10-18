@@ -5,9 +5,8 @@ const {Usermodel}=require("../model/user.model")
 
 const wishR=express.Router();
 
-wishR.get("/get",(req,res)=>{
-    res.send("wishlist")
-})
+
+// route for addwishlist
 
 wishR.post("/addtowish",async(req,res)=>{
 
@@ -18,7 +17,7 @@ wishR.post("/addtowish",async(req,res)=>{
     let availavle=await Wishlistmodel.findOne({productID,userID});
 
     if(availavle){
-        res.send({msg:"product is already in wishlist",status:"error"})
+        res.status(401).json({msg:"product is already in wishlist",status:"error"})
     }else{
         try {
 
@@ -31,13 +30,15 @@ wishR.post("/addtowish",async(req,res)=>{
 
             await Usermodel.findByIdAndUpdate({_id:userID},{$push:{wishlist:wish}})
 
-            res.send({msg:"wishlist added successfully",status:"success"})
+            res.status(201).json({msg:"wishlist added successfully",status:"success"})
             
         } catch (error) {
-            res.send({msg:"wishlist not added ,somethiing went wrong",status:"error"})
+            res.status(500).json({msg:"wishlist not added ,somethiing went wrong",status:"error"})
         }
     }
 })
+
+//route for get all the wishlist
 
 wishR.get("/allwishlist",async(req,res)=>{
 
@@ -48,10 +49,10 @@ wishR.get("/allwishlist",async(req,res)=>{
 
         let wishlist=await Wishlistmodel.find({userID}).populate("productID");
 
-        res.send({wishlist:wishlist,status:"success"})
+        res.status(201).json({wishlist:wishlist,status:"success"})
         
     } catch (error) {
-        res.send({mag:"something went wrong",status:"success"})
+        res.status(500).json({mag:"something went wrong",status:"success"})
     }
 })
 
@@ -67,15 +68,15 @@ wishR.delete("/deletewish/:id",async(req,res)=>{
         try {
 
             await Wishlistmodel.findByIdAndDelete({_id:wishid});
-            res.send({msg:"wish deleted successfully",status:"success"})
+            res.status(201).json({msg:"wish deleted successfully",status:"success"})
             
         } catch (error) {
-            res.send({msg:"something went wrong",status:"error"})
+            res.status(500).json({msg:"something went wrong",status:"error"})
         }
 
     }
     else{
-        res.send({msg:"invalid opration",status:"error"})
+        res.status(401).json({msg:"invalid opration",status:"error"})
     }
 
     

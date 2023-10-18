@@ -7,19 +7,18 @@ const prodr= express.Router();
 
 prodr.use(express.json());
 
+//route Get all products
 prodr.get("/allproduct",async(req,res)=>{
     try {
         const products= await Productmodel.find().populate("category");
-        res.send({products:products,status:"success"})
+        res.status(201).json({products:products,status:"success"})
         
     } catch (error) {
-        res.send({msg:"went wrong"})
-        console.log(error)
+        res.status(500).json({msg:"went wrong",status:"failed"})
     }
 })
 
-// products by category
-
+// route products by category
 prodr.get("/prodcategory/:category",async(req,res)=>{
     let category=req.params.category
     try {
@@ -27,44 +26,41 @@ prodr.get("/prodcategory/:category",async(req,res)=>{
         
         const filteredProducts = products.filter(product => product.category !== null);
         //.populate({path:"category",match:{title:category},select: 'title'});
-        res.send({products:filteredProducts,status:"success"})
+        res.status(201).json({products:filteredProducts,status:"success"})
         
     } catch (error) {
-        res.send({msg:"went wrong"})
-        console.log(error)
+        res.status(500).json({msg:"went wrong",status:"failed"})
     }
 })
 
 
-// get a specific product by id
-
+// route for get a specific product by id
 prodr.get("/getoneproduct/:id",async(req,res)=>{
     let productid=req.params.id;
     try {
         let product=await Productmodel.find({_id:productid});
         res.status(201).json({products:product,status:"success"})
     } catch (error) {
-        res.send({msg:"went wrong"})
-        console.log(error)
+        res.status(500).json({msg:"went wrong",status:"failed"})
     }
 })
 
-// get product by id (add this route also);
-
+// route for addproduct
 prodr.post("/addproduct",async(req,res)=>{
     const payload=req.body;
 
     try {
         const product= new Productmodel(payload);
         await product.save();
-        res.send({msg:"Add product successfully",status:"success"});
+        res.status(201).json({msg:"Add product successfully",status:"success"});
     } catch (error) {
-        console.log(error)
-        res.send({msg:"something went wrong",status:"error"})
+        res.status(500).json({msg:"something went wrong",status:"failed"})
     }
     
 })
 
+
+// route for update the product
 prodr.patch("/updateproduct/:id",async(req,res)=>{
     const payload=req.body;
     const product_id=req.params.id;
@@ -77,32 +73,33 @@ prodr.patch("/updateproduct/:id",async(req,res)=>{
 
             await Productmodel.findByIdAndUpdate({_id:product_id},payload)
 
-            res.send({msg:"prduct is updated",status:"success"})
+            res.status(201).json({msg:"prduct is updated",status:"success"})
             
         } catch (error) {
-            res.send({msg:"product not updated",status:"error"})
+            res.status(500).json({msg:"product not updated",status:"failed"})
         }
 
     }else{
-        res.send({msg:"Product is not available",status:"error"})
+        res.status(401).json({msg:"Product is not available",status:"failed"})
     }
 })
 
+
+// route for delete product
 prodr.delete("/deleteproduct/:id",async(req,res)=>{
     const product_id=req.params.id
-    const product_avalable=await Productmodel.findOne({_id:product_id})
-    console.log("hello")
+    const product_avalable=await Productmodel.findOne({_id:product_id});
 
     if(product_avalable){
         try {
              await Productmodel.findByIdAndDelete({_id:product_id});
-             res.send({msg:"deleted product successfully",status:"success"})
+             res.status(201).json({msg:"deleted product successfully",status:"success"})
             
         } catch (error) {
-            res.send({msg:"product not deleted",status:"error"})
+            res.status(500).json({msg:"product not deleted",status:"error"})
         }
     }else{
-        res.send({msg:"product is not available",status:"error"})
+        res.status(401).json({msg:"product is not available",status:"error"})
     }
 })
 

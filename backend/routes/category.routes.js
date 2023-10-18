@@ -5,6 +5,7 @@ const {Categorymodel}=require("../model/category.model");
 const {authorise}=require("../middleware/authorise");
 const {authentication}=require("../middleware/authentication")
 
+// route for get all category
 categoryroute.get("/allcategory",async(req,res)=>{
 
     try {
@@ -12,11 +13,11 @@ categoryroute.get("/allcategory",async(req,res)=>{
 
         res.status(201).json({allcategory:allcategory,status:"success"})
     } catch (error) {
-        res.status(401).json({msg:error.message,status:"failed"});
+        res.status(500).json({msg:error.message,status:"failed"});
     }
 });
 
-
+//route for add category
 categoryroute.post("/addcategory",authentication,authorise(["Seller","Admin"]),async(req,res)=>{
     const {title}=req.body;
 
@@ -25,7 +26,7 @@ categoryroute.post("/addcategory",authentication,authorise(["Seller","Admin"]),a
        // console.log(category_available)
         
         if(category_available){
-            res.status(401).json({msg:"category is already gg available",status:"failed"});
+            res.status(401).json({msg:"category is already available",status:"failed"});
         }else{
             let newcategory=new Categorymodel({title});
             await newcategory.save();
@@ -33,7 +34,7 @@ categoryroute.post("/addcategory",authentication,authorise(["Seller","Admin"]),a
         }
         
     } catch (error) {
-        res.status(401).json({msg:error.message,status:"failed"});
+        res.status(500).json({msg:error.message,status:"failed"});
         
     }
 })

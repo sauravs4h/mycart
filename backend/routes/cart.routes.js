@@ -7,29 +7,29 @@ const cartr=express.Router();
 
 cartr.use(express.json())
 
+// route for total price
 cartr.get("/totalprice",async(req,res)=>{
     
     const userID=req.body.userID;
 
     try {
         const products= await cartModel.find({userID});
-
-        //console.log(products);
         let tl=0
 
         products.forEach((el)=>{
             tl+=el.total_price
         })
 
-        //console.log(tl)
 
-        res.send({total_price:tl,status:"success"})
+        res.status(201).json({total_price:tl,status:"success"})
         
     } catch (error) {
-        res.send({msg:"something is wrong",status:"error"})
+        res.status(500).json({msg:"something is wrong",status:"error"})
     }
 })
 
+
+//route for add product to the cart
 cartr.post("/addtocart",async(req,res)=>{
 
     let payload=req.body;
@@ -40,7 +40,7 @@ cartr.post("/addtocart",async(req,res)=>{
     let cart_available=await cartModel.findOne({productID,userID});
 
     if(cart_available){
-        res.send({msg:"allready in the cart",status:"error"})
+        res.status(401).json({msg:"allready in the cart",status:"error"})
     }else{
 
         let product=await Productmodel.findOne({_id:productID});
@@ -63,30 +63,26 @@ cartr.post("/addtocart",async(req,res)=>{
 
                 await Usermodel.findByIdAndUpdate({_id:userID},{$push:{cart:newcart}})
 
-                res.send({msg:"add to cart successfull",status:"success"})
+                res.status(201).json({msg:"add to cart successfull",status:"success"})
                 
 
 
             }else{
-                res.send({msg:"product is not available",status:"error"})
+                res.status(401).json({msg:"product is not available",status:"error"})
             }
             
         } catch (error) {
 
-            res.send({msg:error,status:"error"})
+            res.status(500).json({msg:error,status:"error"})
             
         }
 
 
     }
 
-    
-    // console.log(product)
-    // res.send("prodict");
-
-
-
 })
+
+// route for Get all cart
 
 cartr.get("/allcart",async(req,res)=>{
 
@@ -96,16 +92,16 @@ cartr.get("/allcart",async(req,res)=>{
     try {
        let cart=await cartModel.find({userID}).populate("productID");
 
-       res.send({data:cart,status:"success"})
+       res.status(201).json({data:cart,status:"success"})
 
     } catch (error) {
-        res.send({msg:"error while fetching data",status:"error"})
+        res.status(500).json({msg:"error while fetching data",status:"error"})
     }
 
 })
 
 
-// total items
+//route for total items
 
 cartr.get("/totalitems",async(req,res)=>{
 
@@ -115,16 +111,16 @@ cartr.get("/totalitems",async(req,res)=>{
     try {
        let count=await cartModel.find({userID}).count();
 
-       res.send({count:count,status:"success"})
+       res.status(201).json({count:count,status:"success"})
 
     } catch (error) {
-        res.send({msg:"error while fetching data",status:"error"})
+        res.status(500).json({msg:"error while fetching data",status:"error"})
     }
 
 })
 
 
-// update the quantity 
+// route for update the quantity 
 
 cartr.patch("/update/:id",async(req,res)=>{
 
@@ -143,14 +139,14 @@ cartr.patch("/update/:id",async(req,res)=>{
 
             await cartModel.findByIdAndUpdate({_id:cartID},{total_price,quantity});
 
-            res.send({msg:"update sucessfull",status:"sucess"})
+            res.status(201).json({msg:"update sucessfull",status:"sucess"})
 
         }else{
-            res.send({msg:"invalid operation",status:"error"})
+            res.status(401).json({msg:"invalid operation",status:"error"})
         }
         
     } catch (error) {
-        res.send({msg:"something went wrong",status:"error"})
+        res.status(500).json({msg:"something went wrong",status:"error"})
     }
 
     
@@ -170,14 +166,14 @@ cartr.delete("/deletecart/:id",async(req,res)=>{
 
             await cartModel.findByIdAndDelete({_id:cartID});
 
-            res.send({msg:"delete successfull",status:"success"})
+            res.status(201).json({msg:"delete successfull",status:"success"})
 
         }else{
-            res.send({msg:"invalid opration",status:"error"})
+            res.status(401).json({msg:"invalid opration",status:"error"})
         }
         
     } catch (error) {
-        res.send({msg:"somehing went wrong",status:"error"})
+        res.status(500).json({msg:"somehing went wrong",status:"error"})
     }
 
 })
