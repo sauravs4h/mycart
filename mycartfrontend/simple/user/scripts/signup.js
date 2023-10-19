@@ -24,8 +24,25 @@ signupform.onsubmit=async(e)=>{
     });
 
     let result=await res.json();
-    alert(result.msg)
+   // alert(result.msg)
 
+   if(res.ok){
+    Swal.fire(
+        'Good job!',
+        `${result.msg}`,
+        'success'
+      )
+    
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${result.msg}`,
+            
+        })
+
+    }
 
 
     //console.log("hello")

@@ -93,7 +93,7 @@ const appendproduct=(prod)=>{
             const productID=prod._id;
             //const product_quantity=+quantity;
 
-            console.log(quantity)
+           
 
         
             let cartobj={
@@ -101,7 +101,7 @@ const appendproduct=(prod)=>{
             quantity
             }
         
-            console.log(cartobj)
+           
         
             const res= await fetch(`${api}/cart/addtocart`,{
                     method:"POST",
@@ -115,7 +115,27 @@ const appendproduct=(prod)=>{
             })
         
             const result= await res.json();
-            alert(result.msg)
+            //alert(result.msg)
+
+          
+
+            if(res.ok){
+                Swal.fire(
+                    'Good job!',
+                    `${result.msg}`,
+                    'success'
+                  )
+                
+            }
+            else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${result.msg}`,
+                    
+                  })
+
+            }
             
 
         }
@@ -125,7 +145,7 @@ const appendproduct=(prod)=>{
 
         let wishlist=document.getElementById("wishlistbutton");
         wishlist.onclick=async()=>{
-            //console.log(prod)
+            
             let productID=prod._id
 
             try {
@@ -140,11 +160,35 @@ const appendproduct=(prod)=>{
                 })
         
                 let result=await res.json();
-                alert(result.msg)
-                console.log(result)
+               // alert(result.msg)
+               
+                if(res.ok){
+                    Swal.fire(
+                        'Good job!',
+                        `${result.msg}`,
+                        'success'
+                    )
+                
+                }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${result.msg}`,
+                        
+                    })
+
+                }
+               
                 
             } catch (error) {
-                alert("something goes wrong")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    
+                  })
+                //alert("something goes wrong")
                 console.log(error)
             }
             

@@ -22,18 +22,32 @@ loginform.onsubmit=async(e)=>{
     });
 
     let result=await res.json();
-    if(result.status=="success"){
+    if(res.ok){
+        //for alert (it is sweet alert)
+
+        Swal.fire(
+            'Good job!',
+            `${result.msg}`,
+            'success'
+          )
+        
+
         let token=result.token
         
         localStorage.setItem("mykart_token",token)
 
         window.location.href="./index.html"
     }
-    alert(result.msg)
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${result.msg}`,
+            
+          })
 
+    }
 
-
-    //console.log("hello")
 }
 
 
@@ -46,7 +60,7 @@ logout.onclick=async()=>{
 
     try {
 
-        let logou=await fetch(`${api}/logout`,{
+        let res=await fetch(`${api}/logout`,{
             method:"GET",
             headers:{
                 "content-type":"application/json",
@@ -55,13 +69,35 @@ logout.onclick=async()=>{
             }
         })
 
-        let res=await logou.json();
+        let result=await res.json();
 
-        console.log(res)
-        alert(res.msg);
+        if(res.ok){
+            Swal.fire(
+                'Good job!',
+                `${result.msg}`,
+                'success'
+              )
+            
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${result.msg}`,
+                
+              })
+
+        }
+        
         
     } catch (error) {
-        alert(error);
+       // alert(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            
+          })
     }
 }
 

@@ -1,4 +1,4 @@
-
+let api="http://localhost:8080"
 
 // for slide show
 
@@ -91,3 +91,84 @@ function showSlides(n) {
 
 
     //--------------------------------------------------->
+
+    // Getting famous product based on category;
+        
+
+    async function getfamousproduct(category){
+
+        try {
+
+            let res=await fetch(`${api}/product/getfamousproduct/${category}`)
+            let result=await res.json();
+          
+            result=result.products;
+            return result
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Best of Electronics Grid
+
+  
+   async function Bestelec(){
+        let maindiv=document.getElementById("bestelec");
+
+        let data=await getfamousproduct("Electronics");
+      
+
+        data.forEach((el)=>{
+            let productdiv=document.createElement("div")
+            productdiv.classList.add("product")
+
+            productdiv.onclick=()=>{
+                localStorage.setItem("mykart_product",el._id);
+                window.location.href="./product.html"
+            }
+
+            let image=document.createElement("img")
+            image.src=el.image;
+
+            let name=document.createElement("p");
+            name.text=el.name;
+
+            productdiv.append(image,name);
+            maindiv.append(productdiv)
+        })
+    }
+
+    Bestelec()
+
+
+     //Best of Toys Grid
+
+  
+   async function Besttoys(){
+    let maindiv=document.getElementById("besttoys");
+
+    let data=await getfamousproduct("Toys");
+   
+
+    data.forEach((el)=>{
+        let productdiv=document.createElement("div")
+        productdiv.classList.add("product")
+
+        productdiv.onclick=()=>{
+            localStorage.setItem("mykart_product",el._id);
+            window.location.href="./product.html"
+        }
+
+        let image=document.createElement("img")
+        image.src=el.image;
+
+        let name=document.createElement("p");
+        name.text=el.name;
+
+        productdiv.append(image,name);
+        maindiv.append(productdiv)
+    })
+}
+
+Besttoys()

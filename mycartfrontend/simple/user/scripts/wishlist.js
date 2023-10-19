@@ -24,8 +24,14 @@ const getproduct=async()=>{
          let result=await res.json()
         // console.log("result",result)
 
-         if (result.status=="error"){
-            alert(result.msg);
+         if (!res.ok){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${result.msg}`,
+                
+              })
+            
             window.location.href="./login.html";
          }
          else{
@@ -38,10 +44,17 @@ const getproduct=async()=>{
         
     } catch (error) {
         console.log(error)
+        Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+          )
     }
 }
 
 getproduct()
+
+
 
 
 
@@ -103,8 +116,32 @@ async function deleteitom(id){
         let result=await res.json()
         console.log(result);
         getproduct()
-        alert(result.msg)
+        //alert(result.msg)
+        if(res.ok){
+            Swal.fire(
+                'Good job!',
+                `${result.msg}`,
+                'success'
+              )
+            
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${result.msg}`,
+                
+              })
+        
+        }
+        
     } catch (error) {
-        alert("something went wrong")
+        //alert("something went wrong")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            
+          })
     }
 }

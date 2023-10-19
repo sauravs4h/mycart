@@ -19,7 +19,7 @@ const getproduct=async()=>{
 
          let result=await res.json()
         result=result.products
-         console.log("result",result)
+        
 
          appendproduct(result)
         

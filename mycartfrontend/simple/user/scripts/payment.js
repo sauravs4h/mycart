@@ -71,7 +71,16 @@ document.getElementById("paybutton").onclick = async () => {
     usermobile == "" ||
     useraddress == ""
   ) {
-    alertMsg("fill all the fields", "error");
+
+
+    //alertMsg("fill all the fields", "error");
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Fill all the fields!',
+      
+    })
 
     return;
   }
@@ -93,15 +102,37 @@ document.getElementById("paybutton").onclick = async () => {
     })
 
     let result=await res.json();
-    console.log(result)
-    alert(result.msg)
+    
+    if(res.ok){
+      Swal.fire(
+          'Good job!',
+          `${result.msg}`,
+          'success'
+        )
+      
+    }
+    else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${result.msg}`,
+            
+          })
+
+    }
 
     window.location.href="./thankyou.html"
     
 
 }
 catch(error){
-    alert(error)
+    //alert(error)
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      
+    })
 }
 };
 
@@ -128,7 +159,13 @@ async function gettotalitems(){
     titam.style.color = "rgb(163,170,177)";
    
   } catch (error) {
-    alert(error)
+   // alert(error)
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      
+    })
   }
 }
 

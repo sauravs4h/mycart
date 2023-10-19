@@ -58,7 +58,13 @@ const get_cart_product=async()=>{
          appendproduct(result)
         
     } catch (error) {
-        alert(error)
+       // alert(error)
+       Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        
+      })
     }
 }
 
@@ -166,12 +172,36 @@ async function deletecart(el){
        get_cart_product();
        yourtotal()
        
-       alert(result.msg)
+       //alert(result.msg)
+
+        if(res.ok){
+            Swal.fire(
+                'Good job!',
+                `${result.msg}`,
+                'success'
+            )
+        
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${result.msg}`,
+                
+            })
+
+        }
 
        
    } catch (error) {
 
-       alert("error")
+      // alert("error")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        
+      })
        
    }
 }
@@ -202,12 +232,35 @@ async function updatequantity(el,newq){
         get_cart_product()
         yourtotal()
        
-        alert(result.msg)
+        //alert(result.msg)
+        if(res.ok){
+            Swal.fire(
+                'Good job!',
+                `${result.msg}`,
+                'success'
+              )
+            
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${result.msg}`,
+                
+              })
+
+        }
 
         
     } catch (error) {
 
-        alert("error")
+       // alert("error")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            
+          })
         
     }
 }
