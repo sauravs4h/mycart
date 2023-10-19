@@ -18,6 +18,8 @@ prodr.get("/allproduct",async(req,res)=>{
     }
 })
 
+
+
 // route products by category
 prodr.get("/prodcategory/:category",async(req,res)=>{
     let category=req.params.category
@@ -42,6 +44,28 @@ prodr.get("/getoneproduct/:id",async(req,res)=>{
         res.status(201).json({products:product,status:"success"})
     } catch (error) {
         res.status(500).json({msg:"went wrong",status:"failed"})
+    }
+})
+
+
+// route for get famous product based on category
+
+prodr.get("/getfamousproduct/:category",async(req,res)=>{
+    let category=req.params.category;
+
+    try {
+        let products=await Productmodel.find().populate({path:"category",match:{title:category},select: 'title'});
+        const filteredProducts = products.filter(product => product.category !== null);
+
+        filteredProducts.sort(()=>0.5-Math.random());
+
+        let sendproducts=filteredProducts.slice(0,5);
+
+        res.status(201).json({products:sendproducts,status:"success"});
+        
+    } catch (error) {
+        res.status(500).json({msg:"went wrong",status:"failed"})
+        
     }
 })
 

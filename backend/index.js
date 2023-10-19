@@ -2,6 +2,16 @@ const express=require("express");
 var cors = require('cors')
 const app=express();
 
+var bodyParser = require('body-parser')
+
+app.use(cors())
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 
 
 const {connection}=require("./config/db");
@@ -15,14 +25,13 @@ const {wishR}=require("./routes/wishlist.routes")
 const {client}=require("./services/redis")
 
 
-app.use(cors())
-app.use(express.json());
 
 //user route
 app.use("/user",users);
 
 //category route
 app.use("/category",categoryroute);
+
 //product route
 app.use("/product",prodr);
 
