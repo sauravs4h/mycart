@@ -1,4 +1,6 @@
-let api="http://localhost:8080"
+//let api="http://localhost:8080"
+let api="https://mycart-0sv3.onrender.com"
+
 
 // for slide show
 
