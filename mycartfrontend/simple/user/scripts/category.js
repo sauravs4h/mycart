@@ -1,6 +1,6 @@
 //let api="http://localhost:8080/product"
-//let api="https://mycart-0sv3.onrender.com/product"
-let api="http://51.20.115.58:8080/product"
+let api="https://mycart-0sv3.onrender.com/product"
+//let api="http://51.20.115.58:8080/product"
 
 
 const category= localStorage.getItem("mykart_category");

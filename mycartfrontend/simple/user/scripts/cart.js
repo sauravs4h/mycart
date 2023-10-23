@@ -1,7 +1,7 @@
 
 //const api="http://localhost:8080"
-//let api="https://mycart-0sv3.onrender.com"
-let api="http://51.20.115.58:8080"
+let api="https://mycart-0sv3.onrender.com"
+//let api="http://51.20.115.58:8080"
 
 
 const token= localStorage.getItem("mykart_token")
