@@ -1,0 +1,53 @@
+/* Style the footer */
+.footer {
+    
+    margin-top: 10%;
+    background-color: #333; /* Footer background color */
+    color: #fff; /* Text color */
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style footer sections */
+.footer-section {
+    width: 20%; /* Adjust the width for your layout */
+    margin-bottom: 20px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-section p {
+    font-size: 14px;
+}
+
+/* Style footer links */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Media query for responsive layout */
+@media (max-width: 768px) {
+    .footer-section {
+        width: 50%; /* Adjust the width for a responsive layout */
+    }
+}
+
+
+a{
+   text-decoration: none; 
+}
