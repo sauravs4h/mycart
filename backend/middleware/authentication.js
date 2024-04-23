@@ -20,6 +20,7 @@ const authentication=async(req,res,next)=>{
              //console.log(isblack)
 
             if(isblack){
+              console.log(isblack)
               res.status(401).json({msg:"please login" , status:"error"})
             }
             else{
