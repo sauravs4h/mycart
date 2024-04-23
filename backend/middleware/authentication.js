@@ -15,15 +15,15 @@ const authentication=async(req,res,next)=>{
     
      if(token){
 
-             const isblack=await client.SISMEMBER("blacklisttoken",token)
+            //  const isblack=await client.SISMEMBER("blacklisttoken",token)
 
              //console.log(isblack)
 
-            if(isblack){
-              console.log(isblack)
-              res.status(401).json({msg:"please login" , status:"error"})
-            }
-            else{
+            // if(isblack){
+            //   console.log(isblack)
+            //   res.status(401).json({msg:"please login" , status:"error"})
+            // }
+            // else{
 
               jwt.verify(token, 'hush', function(err, decoded) {
 
@@ -39,7 +39,7 @@ const authentication=async(req,res,next)=>{
                   next()
                 });
 
-            }
+            // }
 
             
 
