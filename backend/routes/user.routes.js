@@ -101,7 +101,7 @@ users.get("/logout",async(req,res)=>{
 
        if(token){
         //console.log(token)
-        await client.SADD("blacklisttoken",token);
+        // await client.SADD("blacklisttoken",token);
         res.status(201).json({msg:"logout successsfull", status:"success"})
        }else{
         res.status(401).json({msg:"logout not successsfull", status:"error"})
