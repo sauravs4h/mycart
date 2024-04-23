@@ -55,9 +55,10 @@ app.get("/",(req,res)=>{
 app.listen(8080,async()=>{
     try {
         await connection
-        await client.connect();
+        // await client.connect();
         console.log("connected to db")
     } catch (error) {
+        console.log(error)
         console.log("not connected to db")
     }
     console.log("listining at 8080");
